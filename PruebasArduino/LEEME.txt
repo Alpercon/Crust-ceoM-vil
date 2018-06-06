@@ -1,0 +1,2 @@
+En esta Carpeta se incluyen programas para Arduino con los que probamos 
+algunos componenetes a utilizar.
