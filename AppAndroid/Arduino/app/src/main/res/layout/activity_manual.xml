@@ -13,31 +13,43 @@
 
 
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bluetoothButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="26dp"
+        android:src="@drawable/bluetooth"
+        tools:layout_editor_absoluteX="304dp"
+        tools:layout_editor_absoluteY="419dp" />
+
     <Button
-        android:id="@+id/IdEncender"
+        android:id="@+id/avanzar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="Prender" />
+        android:layout_marginTop="149dp"
+        android:text="Avanzar" />
 
     <Button
         android:id="@+id/IdApagar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="111dp"
+        android:layout_marginBottom="165dp"
         android:text="Apagar" />
 
     <Button
         android:id="@+id/IdDesconectar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/bluetoothButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="137dp"
         android:text="Desconectar" />
 
     <TextView
@@ -46,8 +58,31 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="222dp"
+        android:layout_marginTop="31dp"
         android:text="Información" />
+
+    <Button
+        android:id="@+id/derecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/IdDesconectar"
+        android:text="Derecha" />
+
+    <Button
+        android:id="@+id/izquierda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/IdDesconectar"
+        android:text="Izquierda" />
+
+    <Button
+        android:id="@+id/detenerse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Detenerse" />
 
 
 </RelativeLayout>

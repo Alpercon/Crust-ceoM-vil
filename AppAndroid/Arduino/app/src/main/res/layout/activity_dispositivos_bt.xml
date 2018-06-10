@@ -15,11 +15,11 @@
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Dispositivos Disponibles"
+        android:text="Dispositivos Vinculados"
         />
 
     <ListView
-        android:id="@+id/listaDispositivos"
+        android:id="@+id/IdLista"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/TituloBt"

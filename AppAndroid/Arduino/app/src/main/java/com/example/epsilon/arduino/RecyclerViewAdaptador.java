@@ -44,11 +44,19 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
                         Intent intent = new Intent(context, dispositivosBT.class);
                         context.startActivity(intent);
                         break;
-                    }else{
-                        Intent intent = new Intent(context, ModosAutomaticos.class);
-                        context.startActivity(intent);
-                        break;
-                    }
+                    }if(titulo.getText() == "Automatico"){
+                    Intent intent = new Intent(context, ModosAutomaticos.class);
+                    context.startActivity(intent);
+                    break;
+                }if(titulo.getText() == "Evitador de Obstaculos"){
+                    Intent intent = new Intent(context, EvitadorObstaculos.class);
+                    context.startActivity(intent);
+                    break;
+                }if(titulo.getText() == "Seguidor de Luz"){
+                    Intent intent = new Intent(context, SeguidorLuz.class);
+                    context.startActivity(intent);
+                    break;
+                }
             }
         }
     }

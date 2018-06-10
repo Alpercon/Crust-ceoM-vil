@@ -26,9 +26,9 @@ public class Manual extends AppCompatActivity {
 
 
     //1)
-    Button IdEncender, IdApagar,IdDesconectar;
+    Button btnAvanzar, btnDetenerse,IdDesconectar, btnDerecha,btnIzquierda,btnRetroceder;
     TextView IdBufferIn;
-
+    //-------------------------------------------
     Handler bluetoothIn;
     final int handlerState = 0;
     private BluetoothAdapter btAdapter = null;
@@ -46,12 +46,15 @@ public class Manual extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual);
 
-        //listaDispActivity();No se usa, era para visualizar elementos bluetooth
+        listaDispActivity();
 
 //2)
         //Enlaza los controles con sus respectivas vistas
-        IdEncender = (Button) findViewById(R.id.IdEncender);
-        IdApagar = (Button) findViewById(R.id.IdApagar);
+        btnAvanzar = (Button) findViewById(R.id.avanzar);
+        btnDetenerse = (Button) findViewById(R.id.detenerse);
+        btnDerecha = (Button)findViewById(R.id.derecha);
+        btnIzquierda = (Button)findViewById(R.id.izquierda);
+
         IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
         IdBufferIn = (TextView) findViewById(R.id.IdBufferIn);
 
@@ -73,12 +76,12 @@ public class Manual extends AppCompatActivity {
         };
 
         btAdapter = BluetoothAdapter.getDefaultAdapter(); // get Bluetooth adapter
-        EstadoBt();
+        VerificarEstadoBT();
 
         // Configuracion onClick listeners para los botones
         // para indicar que se realizara cuando se detecte
         // el evento de Click
-        IdEncender.setOnClickListener(new View.OnClickListener() {
+        btnAvanzar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 MyConexionBT.write("1");
@@ -86,7 +89,7 @@ public class Manual extends AppCompatActivity {
             }
         });
 
-        IdApagar.setOnClickListener(new View.OnClickListener() {
+        btnDetenerse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MyConexionBT.write("0");
             }
@@ -109,7 +112,8 @@ public class Manual extends AppCompatActivity {
 
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException
     {
-        //crea un conexion de salida
+        //crea un conexion de salida segura para el dispositivo
+        //usando el servicio UUID
         return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
     }
 
@@ -120,7 +124,7 @@ public class Manual extends AppCompatActivity {
         //Consigue la direccion MAC desde DeviceListActivity via intent
         Intent intent = getIntent();
         //Consigue la direccion MAC desde DeviceListActivity via EXTRA
-        address = intent.getStringExtra(dispositivosBT.EXTRA_DEVICE_ADDRESS);//<-<- PARTE A MODIFICAR >->->
+        address = intent.getStringExtra(dispositivosBT.EXTRA_DEVICE_ADDRESS);
         //Setea la direccion MAC
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
 
@@ -153,7 +157,7 @@ public class Manual extends AppCompatActivity {
         } catch (IOException e2) {}
     }
 
-    private void EstadoBt() {
+    private void VerificarEstadoBT() {
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         if (btAdapter == null) {
             Toast.makeText(getBaseContext(), "El dispositivo no soporta Bluetooth", Toast.LENGTH_SHORT).show();
@@ -224,7 +228,7 @@ public class Manual extends AppCompatActivity {
 
 
 
-    /*public void listaDispActivity(){
+    public void listaDispActivity(){
         blueBtn = (FloatingActionButton)findViewById(R.id.bluetoothButton);
 
         blueBtn.setOnClickListener(new View.OnClickListener(){
@@ -236,7 +240,7 @@ public class Manual extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Dispositivos Bluetooth", Toast.LENGTH_SHORT).show();
             }
         });
-    }*/
+    }
 
 
 

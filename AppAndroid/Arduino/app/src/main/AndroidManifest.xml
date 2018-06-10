@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +21,9 @@
         </activity>
         <activity android:name=".ModosAutomaticos" />
         <activity android:name=".Manual" />
-        <activity android:name=".dispositivosBT"></activity>
+        <activity android:name=".dispositivosBT" />
+        <activity android:name=".EvitadorObstaculos" />
+        <activity android:name=".SeguidorLuz"></activity>
     </application>
 
 </manifest>
