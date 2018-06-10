@@ -4,7 +4,7 @@
 char nombre[21] = "CrustaceoMovil";
 char BPS = '4'; // 1 -> 1200, 2 -> 2400, n -> 1200*(2^(n-1))
 char PWD[5] = "0000";
-char state;
+char state = '0';
 int en1M1 = 6;
 int en2M1 = 7;
 int en1M2 = 8;
@@ -12,10 +12,19 @@ int en2M2 = 9;
 int velM1 = 10;
 int velM2 = 11;
 
+long tiempo;
+int trigger = 4;
+int echo = 5;
+float distancia;
+
+int autoSpeed = 140;
+
 void setup() {
   Serial1.begin(9600);
   Serial1.begin(9600);
 
+  pinMode(trigger, OUTPUT);
+  pinMode(echo, INPUT);
   pinMode(13, OUTPUT);
   digitalWrite(13,HIGH);
   delay(4000);
@@ -45,55 +54,134 @@ void setup() {
 
   analogWrite(velM1, 0);
   analogWrite(velM2, 0);
+
+  state = '0';
 }
 
 void loop() {
+  state = '0';
   while(Serial1.available()){
     state = Serial1.read();
     switch(state){
       case '0':
-        Serial1.println("Avanzando");
-        analogWrite(velM1, 254);
-        analogWrite(velM2, 254);
-        digitalWrite(en1M1, HIGH);
-        digitalWrite(en2M1, LOW);
-        digitalWrite(en1M2, HIGH);
-        digitalWrite(en2M2, LOW);
+        Serial1.println("Alto");
+        detener();
       break;
       case '1':
-        Serial1.println("Retrocediendo");
-        analogWrite(velM1, 254);
-        analogWrite(velM2, 254);
-        digitalWrite(en2M1, HIGH);
-        digitalWrite(en1M1, LOW);
-        digitalWrite(en2M2, HIGH);
-        digitalWrite(en1M2, LOW);
+        Serial1.println("Avanzando");
+        avanzar(254);
       break;
       case'2':
-        Serial1.println("Girando a la derecha");
-        analogWrite(velM1, 254);
-        analogWrite(velM2, 157);
+        Serial1.println("Retrocediendo");
+        retroceder();
       break;
       case '3':
-        Serial1.println("Girando a la izquierda");
-        analogWrite(velM1, 157);
-        analogWrite(velM2, 254);  
+        Serial1.println("Girando a la derecha"); 
+        derecha();  
       break;
       case '4':
-        Serial1.println("Me estoy quemando!! :'v");
-        analogWrite(velM1, 254);
-        analogWrite(velM2, 254);
-        digitalWrite(en1M1, HIGH);
-        digitalWrite(en2M1, LOW);
-        digitalWrite(en1M2, LOW);
-        digitalWrite(en2M2, HIGH);
+        Serial1.println("Girando a la izquierda");
+        izquierda();
       break;
       case '5':
-        Serial1.println("Alto");
-        analogWrite(velM1, 0);
-        analogWrite(velM2, 0);
+        Serial1.println("Me estoy quemando :'v");
+        rotar(254);
+      break;
+      case 'a':
+        automatico();
       break;
     }
-    
   }
 }
+
+void detener(){
+  analogWrite(velM1, 0);
+  analogWrite(velM2, 0);  
+}
+
+void avanzar(int velocidad){
+  analogWrite(velM1, velocidad);
+  analogWrite(velM2, velocidad);
+  digitalWrite(en1M1, HIGH);
+  digitalWrite(en2M1, LOW);
+  digitalWrite(en1M2, HIGH);
+  digitalWrite(en2M2, LOW);  
+}
+
+void retroceder(){
+  analogWrite(velM1, 254);
+  analogWrite(velM2, 254);
+  digitalWrite(en2M1, HIGH);
+  digitalWrite(en1M1, LOW);
+  digitalWrite(en2M2, HIGH);
+  digitalWrite(en1M2, LOW);
+}
+
+void derecha(){
+  analogWrite(velM1, 254);
+  analogWrite(velM2, 157); 
+}
+
+
+void izquierda(){
+  analogWrite(velM1, 157);
+  analogWrite(velM2, 254);
+}
+
+void rotar(int velocidad){
+  analogWrite(velM1, velocidad);
+  analogWrite(velM2, velocidad);
+  digitalWrite(en1M1, HIGH);
+  digitalWrite(en2M1, LOW);
+  digitalWrite(en1M2, LOW);
+  digitalWrite(en2M2, HIGH); 
+}
+
+void automatico(){
+  analogWrite(velM1, 0);
+  analogWrite(velM2, 0);
+  Serial1.println("Activando piloto automático");
+  Serial1.println("Para volver a modo manual presiona x");
+  puntitos(300); 
+  distancia = medirDistancia();
+  Serial1.println("Piloto automático ACTIVADO");
+  while((Serial1.read()) != 'x'){
+    digitalWrite(trigger, HIGH);
+    distancia = medirDistancia();
+    if(distancia > 50){
+      avanzar(autoSpeed); 
+    }
+    else{
+      detener();
+      while(distancia < 50 && ((Serial.read()) != 'x')){
+        rotar(autoSpeed);
+        delay(300);
+        detener();
+        distancia = medirDistancia();
+      }
+    }
+  }
+  detener();
+  puntitos(300);
+  Serial1.println("Modo manual ACTIVADO");
+}
+
+float medirDistancia(){
+  digitalWrite(trigger, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigger, LOW);
+  tiempo = (pulseIn(echo, HIGH)/2);
+  return float(tiempo * 0.0343);
+}
+
+void puntitos(int timer){
+  for(int i = 0; i < 3; i ++){
+    for(int j = 0; j < 3; j++){
+      Serial1.print(".");
+      delay(timer); 
+    }
+    Serial1.println();
+    delay(timer);
+  } 
+}
+
