@@ -41,7 +41,7 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
             switch (v.getId()){
                 case R.id.botonCard:
                     if(titulo.getText() == "Manual") {
-                        Intent intent = new Intent(context, Manual.class);
+                        Intent intent = new Intent(context, dispositivosBT.class);
                         context.startActivity(intent);
                         break;
                     }else{

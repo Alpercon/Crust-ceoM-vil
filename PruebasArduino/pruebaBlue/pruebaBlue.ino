@@ -1,9 +1,9 @@
 #include <SoftwareSerial.h>
 
 SoftwareSerial blue(2,3); //(Rx, Tx)
-char nombre[21] = "CrustaceoMovil";
+char nombre[10] = "Test";
 char BPS = '4'; // 1 -> 1200, 2 -> 2400, n -> 1200*(2^(n-1))
-char PWD[5] = "0000";
+char PWD[5] = "1111";
 
 void setup() {
   blue.begin(9600);

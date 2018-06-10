@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,19 +16,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class dispositivosBT extends AppCompatActivity {
 
+    private static final String TAG = "dispositivosBT";
 
-    ListView IdLista;
-    // String que se enviara a la actividad principal, mainactivity
+    ListView listaBluetooth;
+    // String que se enviara a la actividad principal
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
     // Declaracion de campos
     private BluetoothAdapter mBtAdapter;
-    private ArrayAdapter<String> mPairedDevicesArrayAdapter;
+    private ArrayAdapter<String> arrayAdapter;
+
+    ArrayList<String> stringArrayList = new ArrayList<String>();
 
     private int REQUEST_ENABLE_BT = 74;
 
@@ -46,14 +46,14 @@ public class dispositivosBT extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
-        VerificarEstadoBT();
+        EstadoBt();
 
 
-        mPairedDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.nombre_dispositivos);
+        /*arrayAdapter = new ArrayAdapter<>(this, R.layout.nombre_dispositivos);
 
-        IdLista = (ListView) findViewById(R.id.IdLista);
-        IdLista.setAdapter(mPairedDevicesArrayAdapter);
-        IdLista.setOnItemClickListener(mDeviceClickListener);
+        listaBluetooth = (ListView) findViewById(R.id.listaBluetooth);
+        listaBluetooth.setAdapter(arrayAdapter);
+        listaBluetooth.setOnItemClickListener(mDeviceClickListener);
 
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -61,45 +61,60 @@ public class dispositivosBT extends AppCompatActivity {
         if (pairedDevices.size() > 0)
         {
             for (BluetoothDevice device : pairedDevices) {
-                mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+                arrayAdapter.add(device.getName() + "\n" + device.getAddress());
             }
-        }
-        
+        }*/
+
+        listaBluetooth = (ListView)findViewById(R.id.listaDispositivos);
+        mBtAdapter.startDiscovery();
+
+
+        IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        registerReceiver(mReceiver,intentFilter);
+
+        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),R.layout.nombre_dispositivos,stringArrayList);
+        listaBluetooth.setAdapter(arrayAdapter);
+        listaBluetooth.setOnItemClickListener(mDeviceClickListener);
+
 
     }
 
 
-    // Configura un (on-click) para la lista
+    // OnClick para los elementos de la lista
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView av, View v, int arg2, long arg3) {
 
-            // Obtener la dirección MAC del dispositivo, que son los últimos 17 caracteres en la vista
+            // MAC del dispositivo
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
 
-            // Realiza un intent para iniciar la siguiente actividad
-            // mientras toma un EXTRA_DEVICE_ADDRESS que es la dirección MAC.
-            Intent i = new Intent(dispositivosBT.this, Manual.class);//<-<- PARTE A MODIFICAR >->->
+            Intent i = new Intent(dispositivosBT.this, Manual.class);
             i.putExtra(EXTRA_DEVICE_ADDRESS, address);
             startActivity(i);
         }
     };
 
-    private void VerificarEstadoBT() {
 
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                arrayAdapter.add(device.getName() + "\n" + device.getAddress());
+            }
+        }
+    };
 
+    private void EstadoBt() {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBtAdapter == null) {
             Toast.makeText(getBaseContext(), "El dispositivo no soporta Bluetooth", Toast.LENGTH_SHORT).show();
         }
-
         if (!mBtAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
-
     }
-
 }
 
 

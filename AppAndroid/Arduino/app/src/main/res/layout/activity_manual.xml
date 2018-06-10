@@ -9,23 +9,45 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        />
 
-        android:text="LLegaste al modo manual"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/bluetoothButton"
+
+    <Button
+        android:id="@+id/IdEncender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="Prender" />
+
+    <Button
+        android:id="@+id/IdApagar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="111dp"
+        android:text="Apagar" />
+
+    <Button
+        android:id="@+id/IdDesconectar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end|bottom"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="26dp"
-        android:src="@drawable/bluetooth"
-        tools:layout_editor_absoluteX="304dp"
-        tools:layout_editor_absoluteY="419dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="137dp"
+        android:text="Desconectar" />
 
-
+    <TextView
+        android:id="@+id/IdBufferIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="222dp"
+        android:text="Información" />
 
 
 </RelativeLayout>
