@@ -14,9 +14,10 @@ import android.widget.Toast;
 
 import java.util.Set;
 
-public class dispositivosBT extends AppCompatActivity {
+public class dispositivosBT2 extends AppCompatActivity {
 
-    private static final String TAG = "dispositivosBT";
+
+    private static final String TAG = "dispositivosBT2";
 
     ListView lista;
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
@@ -25,13 +26,10 @@ public class dispositivosBT extends AppCompatActivity {
 
     private int REQUEST_ENABLE_BT = 74;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dispositivos_bt);
+        setContentView(R.layout.activity_dispositivos_bt2);
     }
 
     @Override
@@ -42,11 +40,11 @@ public class dispositivosBT extends AppCompatActivity {
 
 
         dispositivosListaAdapter = new ArrayAdapter<>(this, R.layout.nombre_dispositivos);
-        lista = (ListView) findViewById(R.id.IdLista);
+        lista = (ListView) findViewById(R.id.lista2);
         lista.setAdapter(dispositivosListaAdapter);
         lista.setOnItemClickListener(mDeviceClickListener);
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        Set <BluetoothDevice> pairedDevices = mAdapter.getBondedDevices();
+        Set<BluetoothDevice> pairedDevices = mAdapter.getBondedDevices();
         if (pairedDevices.size() > 0)
         {
             for (BluetoothDevice device : pairedDevices) {
@@ -65,7 +63,7 @@ public class dispositivosBT extends AppCompatActivity {
             String address = info.substring(info.length() - 17);
 
             //toma un EXTRA_DEVICE_ADDRESS que es la dirección MAC.
-            Intent next = new Intent(dispositivosBT.this, Manual.class);
+            Intent next = new Intent(dispositivosBT2.this, EvitadorObstaculos.class);
             next.putExtra(EXTRA_DEVICE_ADDRESS, address);
             startActivity(next);
         }
@@ -84,6 +82,4 @@ public class dispositivosBT extends AppCompatActivity {
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
     }
-
-
 }

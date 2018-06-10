@@ -23,7 +23,8 @@
         <activity android:name=".Manual" />
         <activity android:name=".dispositivosBT" />
         <activity android:name=".EvitadorObstaculos" />
-        <activity android:name=".SeguidorLuz"></activity>
+        <activity android:name=".SeguidorLuz" />
+        <activity android:name=".dispositivosBT2"></activity>
     </application>
 
 </manifest>

@@ -48,12 +48,13 @@ public class Manual extends AppCompatActivity {
 
         listaDispActivity();
 
-//2)
+
         //Enlaza los controles con sus respectivas vistas
         btnAvanzar = (Button) findViewById(R.id.avanzar);
         btnDetenerse = (Button) findViewById(R.id.detenerse);
         btnDerecha = (Button)findViewById(R.id.derecha);
         btnIzquierda = (Button)findViewById(R.id.izquierda);
+        btnRetroceder = (Button)findViewById(R.id.recyclerMode);
 
         IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
         IdBufferIn = (TextView) findViewById(R.id.IdBufferIn);
@@ -81,19 +82,37 @@ public class Manual extends AppCompatActivity {
         // Configuracion onClick listeners para los botones
         // para indicar que se realizara cuando se detecte
         // el evento de Click
-        btnAvanzar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                MyConexionBT.write("1");
-
-            }
-        });
-
         btnDetenerse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MyConexionBT.write("0");
             }
         });
+        btnAvanzar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                MyConexionBT.write("1");
+            }
+        });
+        btnRetroceder.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                MyConexionBT.write("2");
+            }
+        });
+        btnDerecha.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                MyConexionBT.write("3");
+            }
+        });
+        btnIzquierda.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                MyConexionBT.write("4");
+            }
+        });
+
+
 
         IdDesconectar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -36,13 +36,13 @@
         android:text="Avanzar" />
 
     <Button
-        android:id="@+id/IdApagar"
+        android:id="@+id/retroceder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="165dp"
-        android:text="Apagar" />
+        android:text="Retroceder" />
 
     <Button
         android:id="@+id/IdDesconectar"
@@ -62,20 +62,20 @@
         android:text="Información" />
 
     <Button
-        android:id="@+id/derecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/IdDesconectar"
-        android:text="Derecha" />
-
-    <Button
         android:id="@+id/izquierda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/IdDesconectar"
+        android:text="izquierda" />
+
+    <Button
+        android:id="@+id/derecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/IdDesconectar"
-        android:text="Izquierda" />
+        android:text="derecha" />
 
     <Button
         android:id="@+id/detenerse"
