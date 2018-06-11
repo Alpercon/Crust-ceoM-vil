@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public List<CardModelo> obtenerCards(){
         List<CardModelo> card = new ArrayList<>();
         card.add(new CardModelo("Manual","Controla tu mismo este poderoso auto!","Quiero manejarlo ya!",R.drawable.auto));
-        card.add(new CardModelo("Automatico","Cansado de conducir? Prueba los moddos automaticos","Llevame a ellos!",R.drawable.auto2));
+        card.add(new CardModelo("Automatico","Cansado de conducir? Prueba los modos automaticos","Llevame a ellos!",R.drawable.auto2));
         return  card;
     }
 

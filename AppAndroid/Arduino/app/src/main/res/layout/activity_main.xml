@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Prebeauto"
-        android:textSize="100px"
+        android:textSize="50px"
 
 
         />
@@ -25,6 +25,8 @@
             android:id="@+id/recyclerMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+
     </RelativeLayout>
 
 

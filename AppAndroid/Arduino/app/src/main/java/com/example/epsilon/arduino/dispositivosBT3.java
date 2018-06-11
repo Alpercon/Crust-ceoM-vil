@@ -14,8 +14,7 @@ import android.widget.Toast;
 
 import java.util.Set;
 
-public class dispositivosBT extends AppCompatActivity {
-
+public class dispositivosBT3 extends AppCompatActivity {
 
     ListView lista;
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
@@ -24,54 +23,46 @@ public class dispositivosBT extends AppCompatActivity {
 
     private int REQUEST_ENABLE_BT = 74;
 
-
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dispositivos_bt);
+        setContentView(R.layout.activity_dispositivos_bt3);
     }
 
     @Override
-    public void onResume(){
+    public void onResume()
+    {
         super.onResume();
         VerificarEstadoBT();
 
 
         dispositivosListaAdapter = new ArrayAdapter<>(this, R.layout.nombre_dispositivos);
-        lista = (ListView) findViewById(R.id.IdLista);
+        lista = (ListView) findViewById(R.id.lista3);
         lista.setAdapter(dispositivosListaAdapter);
         lista.setOnItemClickListener(mDeviceClickListener);
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        Set <BluetoothDevice> pairedDevices = mAdapter.getBondedDevices();
-        if (pairedDevices.size() > 0){
-            for (BluetoothDevice device : pairedDevices){
+        Set<BluetoothDevice> pairedDevices = mAdapter.getBondedDevices();
+        if (pairedDevices.size() > 0)
+        {
+            for (BluetoothDevice device : pairedDevices) {
                 dispositivosListaAdapter.add(device.getName() + "\n" + device.getAddress());
             }
         }
     }
 
 
-    // Configura la accion "OncLick para la lista
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView av, View v, int arg2, long arg3) {
-
-            //Se obtiene la MAC del dispositivo
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
-
-            //toma un EXTRA_DEVICE_ADDRESS que es la dirección MAC.
-            Intent next = new Intent(dispositivosBT.this, Manual.class);
+            Intent next = new Intent(dispositivosBT3.this, SeguidorLuz.class);
             next.putExtra(EXTRA_DEVICE_ADDRESS, address);
             startActivity(next);
         }
     };
 
 
-
-
-    private void VerificarEstadoBT(){
+    private void VerificarEstadoBT() {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mAdapter == null) {
             Toast.makeText(getBaseContext(), "El dispositivo no soporta Bluetooth", Toast.LENGTH_SHORT).show();
@@ -81,6 +72,4 @@ public class dispositivosBT extends AppCompatActivity {
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
     }
-
-
 }

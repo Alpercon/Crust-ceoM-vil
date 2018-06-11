@@ -27,7 +27,7 @@ public class ModosAutomaticos extends AppCompatActivity {
 
     }
 
-    //Codigo para las cards del inicio
+
     public List<CardModelo> obtenerCards(){
         List<CardModelo> card = new ArrayList<>();
         card.add(new CardModelo("Evitador de Obstaculos","Diviertete viendo al auto manejarse solo","Quiero verlo!",R.drawable.havac));

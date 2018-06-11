@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dispositivosBT">
+    tools:context=".dispositivosBT3">
 
     <TextView
-        android:id="@+id/TituloBt"
+        android:id="@+id/TituloBt3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,9 +19,10 @@
         />
 
     <ListView
-        android:id="@+id/IdLista"
+        android:id="@+id/lista3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/TituloBt"
+        android:layout_below="@+id/TituloBt3"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

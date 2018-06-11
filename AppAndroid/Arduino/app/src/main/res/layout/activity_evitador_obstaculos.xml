@@ -6,10 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".EvitadorObstaculos">
 
-    <TextView
+
+    <Button
+        android:theme="@style/AppTheme.Button"
+        android:id="@+id/modoAutomatico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Evitador de Obstaculos"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp"
+        android:text="Inciar" />
 
+    <Button
+        android:id="@+id/desconecta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="Desconectar" />
+
+    <Button
+        android:theme="@style/AppTheme.Button"
+        android:id="@+id/parar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="144dp"
+        android:text="Parar" />
 </RelativeLayout>

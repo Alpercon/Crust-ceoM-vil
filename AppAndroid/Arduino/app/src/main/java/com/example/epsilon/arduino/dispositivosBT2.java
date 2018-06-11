@@ -16,9 +16,6 @@ import java.util.Set;
 
 public class dispositivosBT2 extends AppCompatActivity {
 
-
-    private static final String TAG = "dispositivosBT2";
-
     ListView lista;
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
     private BluetoothAdapter mAdapter;
@@ -54,22 +51,15 @@ public class dispositivosBT2 extends AppCompatActivity {
     }
 
 
-    // Configura la accion "OncLick para la lista
     private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView av, View v, int arg2, long arg3) {
-
-            //Se obtiene la MAC del dispositivo
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
-
-            //toma un EXTRA_DEVICE_ADDRESS que es la dirección MAC.
             Intent next = new Intent(dispositivosBT2.this, EvitadorObstaculos.class);
             next.putExtra(EXTRA_DEVICE_ADDRESS, address);
             startActivity(next);
         }
     };
-
-
 
 
     private void VerificarEstadoBT() {
