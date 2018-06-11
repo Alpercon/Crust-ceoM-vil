@@ -62,7 +62,7 @@ public class Manual extends AppCompatActivity {
 
                     if (endOfLineIndex > 0) {
                         String dataInPrint = DataStringIN.substring(0, endOfLineIndex);
-                        IdBufferIn.setText("Dato: " + dataInPrint);
+                        //IdBufferIn.setText("Dato: " + dataInPrint);
                         DataStringIN.delete(0, DataStringIN.length());
                     }
                 }

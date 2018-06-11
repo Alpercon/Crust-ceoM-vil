@@ -19,7 +19,7 @@ import java.util.UUID;
 public class SeguidorLuz extends AppCompatActivity {
 
     private int REQUEST_ENABLE_BT = 74;
-    Button btnInicio,btnParar,btnDesconectar;
+    Button btnSeguir,btnParar,btnDesconectar;
 
     Handler bluetoothIn;
     final int handlerState = 0;
@@ -37,7 +37,7 @@ public class SeguidorLuz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seguidor_luz);
 
-        btnInicio = (Button)findViewById(R.id.modoSeguidor);
+        btnSeguir = (Button)findViewById(R.id.modoSeguidor);
         btnParar = (Button)findViewById(R.id.pararSeguidor);
         btnDesconectar = (Button)findViewById(R.id.desconectarse);
 
@@ -61,17 +61,17 @@ public class SeguidorLuz extends AppCompatActivity {
         VerificarEstadoBT();
 
         //Acciones para los buttons
-        btnInicio.setOnClickListener(new View.OnClickListener(){
+        btnSeguir.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                MyConexionBT.write("a");
-                btnInicio.setEnabled(false);
+                MyConexionBT.write("l");
+                btnSeguir.setEnabled(false);
                 btnParar.setEnabled(true);
             }
         });
         btnParar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 MyConexionBT.write("x");
-                btnInicio.setEnabled(true);
+                btnSeguir.setEnabled(true);
                 btnParar.setEnabled(false);
 
             }

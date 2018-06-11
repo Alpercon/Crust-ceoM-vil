@@ -4,44 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Manual">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-
 
 
     <Button
-        android:theme="@style/AppTheme.Button"
+
         android:id="@+id/avanzar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
-        android:text="Avanzar" />
+        android:layout_marginTop="70dp"
+        android:text="Avanzar"
+        android:theme="@style/AppTheme.Button" />
+
+    <Button
+        android:theme="@style/AppTheme.Button"
+        android:id="@+id/izquierda"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_below="@+id/avanzar"
+        android:layout_toLeftOf="@+id/retroceder"
+        android:layout_toStartOf="@+id/retroceder"
+        android:text="izquierda" />
+
+    <Button
+        android:theme="@style/AppTheme.Button"
+        android:id="@+id/derecha"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_above="@+id/retroceder"
+        android:layout_toRightOf="@+id/retroceder"
+        android:layout_toEndOf="@+id/retroceder"
+        android:text="derecha" />
 
     <Button
         android:theme="@style/AppTheme.Button"
         android:id="@+id/retroceder"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="80dp"
+        android:layout_below="@+id/izquierda"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="164dp"
+        android:layout_marginTop="0dp"
+
         android:text="Retroceder" />
 
     <Button
-        android:id="@+id/IdDesconectar"
+        android:id="@+id/detenerse"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:text="Desconectar" />
+        android:layout_below="@+id/avanzar"
+        android:text="Detenerse" />
 
     <TextView
         android:id="@+id/IdBufferIn"
@@ -53,32 +68,14 @@
         android:text="Información" />
 
     <Button
-        android:theme="@style/AppTheme.Button"
-        android:id="@+id/izquierda"
+        android:id="@+id/IdDesconectar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/derecha"
-        android:layout_toStartOf="@+id/retroceder"
-        android:text="izquierda" />
-
-    <Button
-        android:theme="@style/AppTheme.Button"
-        android:id="@+id/derecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/detenerse"
-        android:layout_toEndOf="@+id/IdDesconectar"
-        android:text="derecha" />
-
-    <Button
-        android:theme="@style/AppTheme.Button"
-        android:id="@+id/detenerse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:text="Detenerse" />
+        android:layout_marginBottom="40dp"
+        android:text="Desconectar" />
+
 
 
 </RelativeLayout>
